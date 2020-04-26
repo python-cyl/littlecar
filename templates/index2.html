@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  		<title>公共安全大数据研究所-自动驾驶</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="/littlecar/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/littlecar/static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/littlecar/static/css/fontAwesome.css">
+        <link rel="stylesheet" href="/littlecar/static/css/light-box.css">
+        <link rel="stylesheet" href="/littlecar/static/css/templatemo-style.css">
+		
+		<link rel="stylesheet" type="text/css" href="/littlecar/static/css/index.css"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <script src="/littlecar/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <a href="index.html"><em>Auto drive</em></a>
+        </div>
+        <div class="menu-icon" style="color: #10D7AE;">
+        <span></span>
+		</div>
+    </nav>
+
+    <div id="video-container">
+        <div class="video-overlay"></div>
+        <div class="video-content">
+          <div class="inner" style="justify-content: flex-end">
+			      <div class="inner-control">
+    					<ul>
+    						<li class="bn-con-up">
+    							<button id="up"    status="0" type="button"><span>Up</span></button>
+    						</li>
+    						<li>
+    							<button id="left"  status='0' type="button"><span>Left</span></button>
+    							<button id="down"  status="0" type="button"><span>Down</span></button>
+								<button id="right" status="0" type="button"><span>Right</span></button>
+    							<button id="shift" status="0" type="button" class="bn-con-change bn-con-ch"><span>Shift</span></button>
+    							<button id="lock"  status="0" type="button" class="bn-con-change"><span>Tire Lock</span></button>
+    						</li>    						
+    					</ul>					
+    				</div>	
+          </div>
+			
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>Copyright &copy;| auto drive <a href="">AUTO DRIVE</a> - Collect from <a href="" target="_blank">公共安全大数据研究所</a></p>
+            </div>
+        </div>
+    </footer>
+
+  <!-- Modal button -->
+    <div class="popup-icon">
+      <button id="modBtn" class="modal-btn"><img src="/littlecar/static/img/denglu.png" alt=""></button>
+    </div>  
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <!-- Modal Content -->
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="header-title">Auto<em> drive</em></h3>
+          <div class="close-btn"><img src="/littlecar/static/img/close_contact.png" alt=""></div>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="col-md-6 col-md-offset-3">
+            <form id="contact" action="" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                      <fieldset>
+                        <input name="name" type="text" class="form-control" id="name" imgsrc="/littlecar/static/img/ico_username.png" placeholder="用户名" required="">
+                      </fieldset>
+                    </div>
+					
+                    <div class="col-md-12">
+                      <fieldset>
+                        <input name="email" type="email" class="form-control" id="email" src="/littlecar/static/img/mimasuo.png" placeholder="密码" required="">
+                      </fieldset>
+                    </div>
+					
+					<div class="col-md-12">
+					  <fieldset>
+					    <input name="email" type="email" class="form-control" id="email" src="/littlecar/static/img/mimasuo.png" placeholder="验证码" required="">
+					  </fieldset>
+					</div>
+					
+                    <!-- <div class="col-md-12">
+                      <fieldset>
+                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="验证码" required></textarea>
+                      </fieldset>
+                    </div> -->
+						
+                    <div class="col-md-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="btn">登陆</button>
+                      </fieldset>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+	 
+
+    <section class="overlay-menu">
+      <div class="container">
+        <div class="row">
+          <div class="main-menu">
+              <ul>
+                  <li>
+                      <a href="index.html">Home</a>
+                  </li>
+                  <li>
+                      <a href="about.html">About Us</a>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="/littlecar/static/js/vendor/bootstrap.min.js"></script>
+    
+    <script src="/littlecar/static/js/plugins.js"></script>
+    <script src="/littlecar/static/js/main.js"></script>
+
+    <script type="text/javascript">
+      // 从url得到token
+      function getQueryVariable(variable) {
+         var query = window.location.search.substring(1);
+         var vars = query.split("&");
+         for (var i=0;i<vars.length;i++) {
+                 var pair = vars[i].split("=");
+                 if(pair[0] == variable){return pair[1];}
+         }
+         return false;
+      }
+      // 如果没有tokoen，返回登陆页面
+      var token = getQueryVariable("token")
+      if (!token) {
+        window.location.replace("/login.html");
+      }
+      // 封装ajax
+      function option(url, data={}, success=null, fail=null, error=null) {
+        $.ajax({
+          url: url,
+          data: data,
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + token,
+          },
+          success: function(data){
+            if (data.responseJSON && data.responseJSON.status == 'fail') {
+              alert(data.responseJSON.msg)
+            }
+            else if (data.status == 401) {
+              alert("登陆过期，请重新登陆")
+              window.location.replace("/login.html")
+            }
+          },
+          error: function(data){
+            if (data.responseJSON && data.responseJSON.status == 'fail') {
+              alert(data.responseJSON.msg)
+            }
+            else if (data.status == 401) {
+              alert("登陆过期，请重新登陆")
+              window.location.replace("/login.html")
+            }
+          },
+          fail: function(data){
+            if (data.responseJSON && data.responseJSON.status == 'fail') {
+              alert(data.responseJSON.msg)
+            }
+            else if (data.status == 401) {
+              alert("登陆过期，请重新登陆")
+              window.location.replace("/login.html")
+            }
+          },
+
+        })
+      } 
+
+
+      // 将档位调至低速档，轮胎锁锁定
+      option('http://127.0.0.1:5000/api/car/gear', {fast:'0'})
+
+      option('http://127.0.0.1:5000/api/car/lock', {open:'0'})
+
+    </script>
+
+    <script type="text/javascript">
+      // 切换轮胎锁和档位状态
+      function change_gear(){
+        var status = $("#shift").attr("status")
+        if (status == '0'){
+          $("#shift").attr("status", "1")
+          return '1'
+        }
+        else{
+          $("#shift").attr("status", "0")
+          return '0'
+        }
+      }
+      function change_lock(){
+        var status = $("#lock").attr("status")
+        if (status == '0'){
+          $("#lock").attr("status", "1")
+          return '1'
+        }
+        else{
+          $("#lock").attr("status", "0")
+          return '0'
+        }
+      }
+
+      //// 鼠标操作小车
+      // up
+      $("#up").on("mousedown", function(){
+        option('http://127.0.0.1:5000/api/car/run');
+      })
+      $("#up").on("mouseup", function(){
+        option('http://127.0.0.1:5000/api/car/run', {reset:'1'});
+      })
+
+      // down
+      $("#down").mousedown(function(){
+        option('http://127.0.0.1:5000/api/car/run', {backward:'1'});
+      })
+      $("#down").on("mouseup", function(){
+        option('http://127.0.0.1:5000/api/car/run', {reset:'1'});
+      })
+
+      // left
+      $("#left").mousedown(function(){
+        option('http://127.0.0.1:5000/api/car/turn', {angle:'1'});
+      })
+      $("#left").on("mouseup", function(){
+        option('http://127.0.0.1:5000/api/car/turn', {reset:'1'});
+      })
+
+      // right
+      $("#right").mousedown(function(){
+        option('http://127.0.0.1:5000/api/car/turn', {angle:'5'})
+      });
+      $("#right").on("mouseup", function(){
+        option('http://127.0.0.1:5000/api/car/turn', {reset:'1'})
+      });
+
+      // gear
+      $("#shift").click(function(){
+        var status = change_gear()
+        console.log(`gear ${status}`)
+        option('http://127.0.0.1:5000/api/car/gear', {fast: status})
+      });
+
+      // lock
+      $("#lock").click(function(){
+        var status = change_lock()
+        console.log(`lock ${status}`)
+        option('http://127.0.0.1:5000/api/car/lock', {open: status})
+      });
+    </script>
+
+    <script type="text/javascript">
+      //// keyboard
+      $(document).on("keydown", function(event){
+
+        if (event.keyCode == 38){ // up
+          var status = $("#up").attr("status")
+          if (status != "1"){
+            option('http://127.0.0.1:5000/api/car/run',  )
+          }
+
+        } else if (event.keyCode == 40) { // down
+          var status = $("#down").attr("status")
+          if (status != "1"){
+            option('http://127.0.0.1:5000/api/car/run', {backward:'1'})
+          }
+           
+        } else if (event.keyCode == 37) { // left
+          var status = $("#left").attr("status")
+          if (status != "1"){
+            option('http://127.0.0.1:5000/api/car/turn', {angle:'1'})
+          }
+          
+        } else if (event.keyCode == 39) { // right
+          var status = $("#right").attr("status")
+          if (status != "1"){
+            option('http://127.0.0.1:5000/api/car/turn', {angle:'5'})
+          }
+        }
+      });
+
+      $(document).on("keyup", function(event){
+        if (event.keyCode == 38){ // up
+          option('http://127.0.0.1:5000/api/car/run', {reset:'1'})
+        } else if (event.keyCode == 40) { // down
+          option('http://127.0.0.1:5000/api/car/run', {reset:'1'})
+        } else if (event.keyCode == 37) { // left
+          option('http://127.0.0.1:5000/api/car/turn', {reset:'1'})
+        } else if (event.keyCode == 39) { // right
+          option('http://127.0.0.1:5000/api/car/turn', {reset:'1'})
+        }
+      });
+
+      $(document).on("keyup", function(event){
+        if (event.which  == 16) {
+          var status = change_gear()
+          console.log(`gear ${status}`)
+          option('http://127.0.0.1:5000/api/car/gear', {fast: status})
+        } else if (event.which  == 76) {
+          var status = change_lock()
+          console.log(`lock ${status}`)
+          option('http://127.0.0.1:5000/api/car/lock', {open: status})
+        }
+      })
+    </script>>
+    
+</body>
+</html>

@@ -1,0 +1,97 @@
+body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,form,*,a,p,textarea{
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft Yahei",Helvetica,Arial,sans-serif;
+}
+
+ol,ul,li {
+	list-style: outside none none;
+}
+
+a {
+	text-decoration:none;
+}
+
+img {
+	border:none;
+	display: block;
+}
+
+i {
+	font-style: normal;
+}
+
+.logo em {
+	color: #10D7AE;
+}
+
+.inner em {
+	color: #10D7AE;
+}
+
+.inner-control {
+	margin-top: 120px;
+}
+
+.bn-con-up {
+	margin-left: 105px;
+	margin-bottom: 4px;
+}
+
+
+
+.inner-control button {
+	width: 100px;
+	height: 80px;
+	border: 4px solid #fff;
+	border-radius: 8px;
+	background-color: transparent;
+}
+
+.inner-control button:nth-child(4) {
+	width: 130px;
+}
+
+.inner-control button:nth-child(5) {
+	width: 130px;
+}
+
+.inner-control button:hover {
+	border-color: #10d7ae;
+	background-color: #10D7AE;
+	
+}
+
+.inner-control button,span {
+	font-size: 26px;
+	text-align: center;
+	vertical-align: auto;
+	color: #fff;
+}
+
+.bn-con-ch {
+	margin-left: 200px;
+	
+}
+
+.modal-header h3 {
+	color: #10D7AE;
+}
+
+.modal-body button {
+	width: 30%;
+	height: 40px;
+	background-color: rgba(250, 250, 250, 0.15);
+	border-bottom: rgba(250, 250, 250, 0.15);
+	font-size: 20px;
+	font-weight: 400;
+	color: #10D7AE;
+	border-color: #10D7AE;
+	border-radius: 10px;
+}
+
+.modal-body button:hover {
+	background-color: #10D7AE;
+	color: #101010;
+	
+}

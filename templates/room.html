@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房间管理</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+
+    <script type="text/javascript">
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return false;
+        }
+
+        // 如果没有tokoen，返回登陆页面
+        var token = getQueryVariable("token")
+        console.log(token)
+        //if (!token) {
+        //    window.location.replace("/login.html");
+        //}
+
+        function next() {
+            window.open('http://localhost:63342/littlecar/templates/index.html?token='+token)
+        }
+
+        function join() {
+            var car_join_id = $("#car_join").val();
+            var room_join_number = $("#room_join").val();
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/api/car/join/",
+                data: {
+                    "car_id": car_join_id,
+                    "room_number": room_join_number
+                },
+                success: function (data) {
+                    var message = data['message'];
+                    $("#message1").html(message);   //提示框添加内容
+                    $("#message1").show();      //显示提示框
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        };
+
+        function leave() {
+            var car_leave_id = $("#car_leave").val();
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/api/car/leave/",
+                data: {
+                    "car_id": car_leave_id
+                },
+                success: function (data) {
+                    var message = data['message'];
+                    $("#message2").html(message);
+                    $("#message2").show();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        };
+
+        function show() {
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/api/car/show/",
+                data: {},
+                success: function (data) {
+                    var show_text = document.getElementById('show_text');
+                    show_text.value = '小车号        队列号'
+                    for (var id in data) {
+                        show_text.value = show_text.value + "\n" + '  ' + id + "             " + data[id]
+                    }
+                    $("#show_text").show();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        };
+
+        $(document).ready(function () {         //定义焦点事件，用于隐藏提示框
+            $('input[name="car_join"]').focus(function () {
+                $("#message1").hide()
+            });
+            $('input[name="room_join"]').focus(function () {
+                $("#message1").hide()
+            });
+            $('input[name="car_leave"]').focus(function () {
+                $("#message2").hide()
+            });
+        })
+    </script>
+</head>
+
+<style type="text/css">
+</style>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h3>Auto drive</h3>
+    </div>
+    <div id="join">
+        <input type="text" name="car_join" id="car_join" placeholder="小车ID号"/>
+        <input type="text" name="room_join" id="room_join" placeholder="队列号"/>
+        <button type="button" onclick="join()">加入队列</button>
+        <p style="display:none" id="message1"></p>
+    </div>
+    <div id="leave">
+        <input type="text" name="car_leave" id="car_leave" placeholder="小车ID号"/>
+        <button type="button" onclick="leave()">离开房间</button>
+        <p style="display:none" id="message2"></p>
+    </div>
+    <div id="show">
+        <button type="button" onclick="show()">Show</button>
+        <textarea style="display:none;width: 200px;height: 100px;margin: auto 25px" id="show_text"></textarea>
+    </div>
+    <div>
+        <a onclick="next()">点此进入控制页面</a>
+    </div>
+</div>
+</body>
+</html>
